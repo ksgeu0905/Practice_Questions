@@ -1,3 +1,4 @@
+/**
 class MyLinkedList {
 public:
     struct node{
@@ -96,7 +97,6 @@ public:
     }
 };
 
-/**
  * Your MyLinkedList object will be instantiated and called as such:
  * MyLinkedList* obj = new MyLinkedList();
  * int param_1 = obj->get(index);

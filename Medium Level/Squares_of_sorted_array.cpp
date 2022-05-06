@@ -1,3 +1,4 @@
+/*
 class Solution {
 public:
     vector<int> sortedSquares(vector<int>& v) {
@@ -8,3 +9,4 @@ public:
         return v;
     }
 };
+*/

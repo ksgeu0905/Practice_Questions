@@ -7,7 +7,6 @@
  *     ListNode(int x) : val(x), next(nullptr) {}
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
- */
 class Solution {
 public:
     void reverse(ListNode**head,ListNode**tail){
@@ -52,3 +51,4 @@ public:
         return head;
     }
 };
+ */

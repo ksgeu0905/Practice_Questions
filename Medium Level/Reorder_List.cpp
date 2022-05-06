@@ -20,7 +20,6 @@ Output: [1,4,2,3]
  *     ListNode(int x) : val(x), next(nullptr) {}
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
- */
 class Solution {
 public:
     void reorderList(ListNode* head) {
@@ -50,3 +49,4 @@ public:
         }
     }
 };
+ */
