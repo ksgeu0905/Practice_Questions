@@ -1,19 +1,16 @@
 class Solution {
 public:
-    void find(int n,string s,vector<string> & ans,int sum){
-        if(sum==0 && n==0){
-            ans.push_back(s);
+    vector<string> generateParenthesis(int n) {
+        vector<string> res;
+        addingpar(res, "", n, 0);
+        return res;
+    }
+    void addingpar(vector<string> &v, string str, int n, int m){
+        if(n==0 && m==0) {
+            v.push_back(str);
             return;
         }
-        if(n>0)
-        find(n-1,s+"(",ans,sum+1);
-        if(sum>0)
-        find(n,s+")",ans,sum-1);
-        
-    }
-    vector<string> generateParenthesis(int n) {
-        vector<string> ans;
-        find(n,"",ans,0);
-        return ans;
+        if(m > 0){ addingpar(v, str+")", n, m-1); }
+        if(n > 0){ addingpar(v, str+"(", n-1, m+1); }
     }
 };
