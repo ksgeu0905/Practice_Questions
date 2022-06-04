@@ -1,15 +1,14 @@
 class Solution {
 public:
     int rob(vector<int>& nums) {
-        vector<int> dp(nums.size());
-        dp[0]=nums[0];
+        int prev=nums[0], prev2=0,curr=0;
         for(int i=1;i<nums.size();i++){
-            int pick=nums[i];
-            if(i>1)
-                pick+=dp[i-2];
-            int n_pick=0+dp[i-1];
-            dp[i]=max(pick,n_pick);
+            int pick=nums[i]+prev2;
+            int n_pick=prev;
+            curr=max(pick,n_pick);
+            prev2=prev;
+            prev=curr;
         }
-        return dp[nums.size()-1];
+        return prev;
     }
 };
