@@ -21,8 +21,8 @@ public:
         for(int i=1;i<nums.size();i++){
             v2.push_back(nums[i]);
         }
-        int a=fun(v1);
-        int b=fun(v2);
-        return max(a,b);
+        // int a=fun(v1);
+        // int b=fun(v2);
+        return max(fun(v1),fun(v2));
     }
 };
