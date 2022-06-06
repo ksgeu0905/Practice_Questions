@@ -8,7 +8,9 @@ public:
             return 0;
         if(ogrid[m][n]==1)
             return 0;
-        if(dp[m][n]!= -1 )return dp[m][n];
+        if(dp[m][n]!= -1 )
+            return dp[m][n];
+        
         int up=find(m-1,n,dp,ogrid);
         int left=find(m,n-1,dp,ogrid);
         
