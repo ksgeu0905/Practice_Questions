@@ -2,7 +2,7 @@ class Solution {
 public:
     int maximumUniqueSubarray(vector<int>& nums) {
         int n = nums.size();
-        // max sum unique sub array
+        
         int res = 0;
         int i = 0;
         unordered_map<int, int> Map;
