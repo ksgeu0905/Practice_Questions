@@ -23,8 +23,22 @@ class Solution
     }
     int knapSack(int W, int wt[], int val[], int n) 
     { 
-       vector<vector<int>> dp(W+1,vector<int> (n,-1)) ;
-       return find(W,wt,val,n-1,dp);
+       vector<vector<int>> dp(n,vector<int> (W+1,0));
+       for(int x=wt[0];x<=W;x++)dp[0][x]=val[0];
+       for(int ind=1;ind<n;ind++){
+           for(int w=1;w<=W;w++){
+               int n_pick=0;
+               if(ind!=0)
+                   n_pick=dp[ind-1][w];
+               int pick=0;
+               if(ind!=0 && wt[ind]<=w){
+                   pick=val[ind]+dp[ind-1][w-wt[ind]];
+               }
+               dp[ind][w]=max(pick,n_pick);
+           }
+       }
+       return dp[n-1][W];
+      
     }
 };
 
