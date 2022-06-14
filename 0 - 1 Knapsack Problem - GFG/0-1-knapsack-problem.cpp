@@ -7,20 +7,7 @@ using namespace std;
 class Solution
 {
     public:
-    //Function to return max value that can be put in knapsack of capacity W.
-    int find(int W,int wt[],int val[],int ind,vector<vector<int>>&dp ){
-        if(W<=0)
-            return 0;
-        if(ind<0)
-            return 0;
-        if(dp[W][ind]!=-1)return dp[W][ind];
-        int pick=-1;
-        if(wt[ind] <= W){
-            pick =val[ind]+find(W-wt[ind],wt,val,ind-1,dp);
-        }
-        int npick=find(W,wt,val,ind-1,dp);
-        return dp[W][ind]=max(pick,npick);
-    }
+    //Function to return max value that can be put in knapsack of capacity W
     int knapSack(int W, int wt[], int val[], int n) 
     { 
        vector<vector<int>> dp(n,vector<int> (W+1,0));
