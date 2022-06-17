@@ -1,21 +1,20 @@
 class Solution {
 public:
     int countConsistentStrings(string allowed, vector<string>& words) {
-        set<char> s;
-        for(auto i :allowed){
-            s.insert(i);
-        }
-        int ans=0,f=0;
-        for(auto i : words){
-            f=0;
-            for(int j=0;j<i.length();j++){
-                if(s.find(i[j])==s.end()){
-                    f=1;
+         int res = words.size();
+        bool hash[26] = {false};
+        
+        for (char c: allowed) 
+            hash[c - 'a'] = true;
+        
+        for (string word: words) {
+            for (char c: word){
+                if (hash[c - 'a']==false) {
+                    res--;
                     break;
                 }
             }
-            if(f==0)ans++;
         }
-        return ans;
+        return res;
     }
 };
