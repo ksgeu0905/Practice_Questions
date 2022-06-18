@@ -34,6 +34,8 @@ public:
                     l=mid+1;
                 }
             }
+            if(customfunction.f(i,1)>z)
+                break;
         }
         return ans;
     }
