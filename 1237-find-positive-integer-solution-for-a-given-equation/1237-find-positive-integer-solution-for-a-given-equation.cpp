@@ -21,10 +21,7 @@ public:
                 int mid=(l+r)/2;
                 t=customfunction.f(i,mid);
                 if(t==z){
-                    vector<int> temp;
-                    temp.push_back(i);
-                    temp.push_back(mid);
-                    ans.push_back(temp);
+                    ans.push_back({i,mid});
                     break;
                 }
                 else if(t>z){
