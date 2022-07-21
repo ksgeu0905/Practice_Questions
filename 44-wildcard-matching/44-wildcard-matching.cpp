@@ -13,13 +13,13 @@ public:
 
         int x=0,y=0;
         if(s[i]==t[j] || t[j]=='?')
-            return dp[i][j]=find(s,t,i-1,j-1,dp);
+            x=find(s,t,i-1,j-1,dp);
         else if(t[j]=='*')
         {
-             return dp[i][j]=find(s,t,i,j-1,dp) || find(s,t,i-1,j,dp);   
+             y= find(s,t,i,j-1,dp) || find(s,t,i-1,j,dp);   
         }
         
-        return dp[i][j]=false;
+        return dp[i][j]=x || y;
     }
     bool isMatch(string s, string t) {
         vector<vector<int>>dp(s.length(),vector<int>(t.length(),-1));
