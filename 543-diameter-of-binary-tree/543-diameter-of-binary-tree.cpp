@@ -11,25 +11,14 @@
  */
 class Solution {
 public:
-    int depth(TreeNode * root){
+    int dep(TreeNode*root){
         if(!root)return 0;
-        int l=1+depth(root->left);
-        int r=1+depth(root->right);
-        return max(l,r);
-    }
-    void func(TreeNode* root,int & max){
-        if(!root)return;
-        int x=depth(root->left)+depth(root->right);
-        if(x>max){
-            max=x;
-        }
-        func(root->left,max);
-        func(root->right,max);
+        return max(dep(root->left),dep(root->right))+1;
     }
     int diameterOfBinaryTree(TreeNode* root) {
         if(!root)return 0;
-        int max1=-1;
-        func(root,max1);
-        return max1;
+        int l=dep(root->left);
+        int r=dep(root->right);
+        return max(l+r,max(diameterOfBinaryTree(root->left),diameterOfBinaryTree(root->right)));
     }
 };
