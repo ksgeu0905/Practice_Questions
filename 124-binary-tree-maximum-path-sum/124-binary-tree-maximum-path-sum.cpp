@@ -11,22 +11,18 @@
  */
 class Solution {
 public:
-    int find(TreeNode * root){
+    int find(TreeNode * root,int & maxi){
         if(!root)return 0;
-        int l=root->val+find(root->left);
-        int r=root->val+find(root->right);
-        int x=root->val;
+        int l=max(0,find(root->left,maxi));
+        int r=max(0,find(root->right,maxi));
+        maxi=max(maxi,l+r+root->val);
         
-        return max(max(l,r),x);
+        return max(l,r)+root->val;
     }    
     
     int maxPathSum(TreeNode* root) {
-        if(!root)return -1e9;
-        int p1=find(root->left);
-        int p2=find(root->right);
-        int x=max(max(root->val,root->val+p1+p2),max(root->val+p1,root->val+p2));
-        int l=maxPathSum(root->left);
-        int r=maxPathSum(root->right);
-        return max(x,max(l,r));
+        int maxi=-1e9;
+        find(root,maxi);
+        return maxi;
     }
 };
