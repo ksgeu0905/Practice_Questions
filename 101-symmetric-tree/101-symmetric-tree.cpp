@@ -11,15 +11,13 @@
  */
 class Solution {
 public:
-    bool symm(TreeNode* root1,TreeNode*root2){
-        if(root1==NULL || root2==NULL)
-            return root1==root2;
-        if(root1->val != root2->val)return false;
-        return symm(root1->left,root2->right) && symm(root1->right,root2->left);
-        
+    bool find(TreeNode* r1,TreeNode* r2){
+        if(!r1 && !r2)return true;
+        if(!r1 || !r2)return false;
+        if(r1->val != r2->val)return false;
+        return find(r1->left,r2->right) && find(r1->right,r2->left);
     }
     bool isSymmetric(TreeNode* root) {
-        if(!root)return true;
-        return symm(root->left,root->right);        
+        return find(root->left,root->right);
     }
 };
