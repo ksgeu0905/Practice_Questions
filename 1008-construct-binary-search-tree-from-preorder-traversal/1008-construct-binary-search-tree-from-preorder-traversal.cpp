@@ -11,16 +11,16 @@
  */
 class Solution {
 public:
-    TreeNode* bstFromPreorder(vector<int>& preorder) {
-        int i=0;
-        return build(preorder,i,INT_MAX);
+    TreeNode* func(vector<int>& preorder,int s,int e){
+        if(s>e)return NULL;
+        TreeNode * temp=new TreeNode(preorder[s]);
+        int x=lower_bound(preorder.begin()+s+1,preorder.begin()+e+1,preorder[s])-preorder.begin();
+       
+        temp->left=func(preorder,s+1,x-1);
+        temp->right=func(preorder,x,e);
+        return temp;
     }
-    TreeNode* build(vector<int> pre,int &i,int bound){
-        if(i==pre.size() || pre[i]>bound)return NULL;
-        TreeNode * root=new TreeNode(pre[i]);
-        i++;
-        root->left=build(pre,i,root->val);
-        root->right=build(pre,i,bound);
-        return root;
+    TreeNode* bstFromPreorder(vector<int>& preorder) {
+        return func(preorder,0,preorder.size()-1);
     }
 };
