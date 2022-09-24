@@ -11,19 +11,18 @@
  */
 class Solution {
 public:
-    
     int kthSmallest(TreeNode* root, int k) {
-        int count=countnodes(root->left);
-        if(k<=count){
+        int c=count(root->left);
+        if(k<=c){
             return kthSmallest(root->left,k);
         }
-        else if(k > count+1)
-            return kthSmallest(root->right,k-1-count);
+        else if(k>c+1){
+            return kthSmallest(root->right,k-c-1);
+        }
         return root->val;
     }
-    
-    int countnodes(TreeNode * root){
+    int count(TreeNode* root){
         if(!root)return 0;
-        return 1+countnodes(root->left)+countnodes(root->right);
+        return 1+count(root->left)+count(root->right);
     }
 };
