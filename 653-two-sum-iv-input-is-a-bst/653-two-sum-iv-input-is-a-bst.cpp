@@ -11,22 +11,21 @@
  */
 class Solution {
 public:
-    bool search(TreeNode*root,int k,TreeNode* temp){
-        if(!root)return false;
-        if(root->val==k && root!=temp)return true;
-        if(k<root->val)return search(root->left,k,temp);
-        if(k>root->val)return search(root->right,k,temp);
-        return false;
-    }
-    bool find(TreeNode* root,int k,TreeNode* temp){
-         if(!root)return false;
-        if(search(temp,k-root->val,root))
-            return true;
-        return find(root->left,k,temp) || find(root->right,k,temp);
+    vector<int>in;
+    void inorder(TreeNode* root){
+        if(!root)return;
+        inorder(root->left);
+        in.push_back(root->val);
+        inorder(root->right);
     }
     bool findTarget(TreeNode* root, int k) {
-       if(!root)return false;
-        return find(root,k,root);
-        
+        inorder(root);
+        int i=0,j=in.size()-1;
+        while(i<j){
+            if(in[i]+in[j]==k)return true;
+            if(in[i]+in[j] > k)j--;
+            else i++;
+        }
+        return false;
     }
 };
