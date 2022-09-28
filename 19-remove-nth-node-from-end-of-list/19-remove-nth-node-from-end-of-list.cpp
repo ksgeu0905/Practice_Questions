@@ -8,22 +8,24 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-class Solution
-{
+class Solution {
 public:
-    ListNode* removeNthFromEnd(ListNode* head, int n)
-    {
-        ListNode** t1 = &head, *t2 = head;
-        for(int i = 1; i < n; ++i)
-        {
-            t2 = t2->next;
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        int c=0;
+        ListNode* cur=head,*prev=NULL,*p=head;
+        while(p){
+            c++;
+            p=p->next;
         }
-        while(t2->next != NULL)
-        {
-            t1 = &((*t1)->next);
-            t2 = t2->next;
+        c=c-n;
+        if(c==0){
+            return head->next;
         }
-        *t1 = (*t1)->next;
+        while(c--){
+            prev=cur;
+            cur=cur->next;
+        }
+        prev->next=cur->next;
         return head;
     }
 };
