@@ -6,17 +6,12 @@ public:
     }
     
     bool book(int start, int end) {
-        mp[start]++;
-        mp[end]--;
-        int s=0;
-        for(auto i :mp){
-            s+=i.second;
-            if(s>1){
-                mp[start]--;
-                mp[end]++;
-                return false;
-            }
-        }
+        auto t = mp.upper_bound(start);
+        
+        if(t!=mp.end() && t->second < end)
+            return false;
+        
+        mp.insert({end,start});
         return true;
     }
 };
