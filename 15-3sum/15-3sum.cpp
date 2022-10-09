@@ -1,50 +1,42 @@
 class Solution {
 public:
-   vector<vector<int> > threeSum(vector<int> &num) {
-    
-    vector<vector<int> > res;
-
-    std::sort(num.begin(), num.end());
-
-    for (int i = 0; i < num.size(); i++) {
-        
-        int target = -num[i];
-        int front = i + 1;
-        int back = num.size() - 1;
-
-        while (front < back) {
-
-            int sum = num[front] + num[back];
-            
-            // Finding answer which start from number num[i]
-            if (sum < target)
-                front++;
-
-            else if (sum > target)
-                back--;
-
-            else {
-                vector<int> triplet = {num[i], num[front], num[back]};
-                res.push_back(triplet);
-                
-                // Processing duplicates of Number 2
-                // Rolling the front pointer to the next different number forwards
-                while (front < back && num[front] == triplet[1]) front++;
-
-                // Processing duplicates of Number 3
-                // Rolling the back pointer to the next different number backwards
-                while (front < back && num[back] == triplet[2]) back--;
+    vector<vector<int>> threeSum(vector<int>& nums) {
+         vector<vector<int> > ans;
+        if(nums.size()<=2) return ans;
+        sort(nums.begin(),nums.end());
+     
+        for(int a=0;a<nums.size()-2;a++)
+        {
+        if(a>0 && nums[a]==nums[a-1]) continue;
+            int b=a+1;
+            int c=nums.size()-1;
+            while(b<c)
+            {
+                int sum=nums[a]+nums[b]+nums[c];
+                if(sum<0)
+                {
+                    b++;
+                    while(b < c && nums[b]==nums[b-1])
+                        b++;
+                }
+                else if(sum>0)
+                {
+                    c--;
+                    while(b < c && nums[c]==nums[c+1])
+                        c--;
+                }
+                else
+                {
+                    ans.push_back(vector<int>{nums[a],nums[b],nums[c]});
+                    b++; c--;
+                    while(b < c && nums[b]==nums[b-1]) 
+                        b++;
+                    while(b < c && nums[c]==nums[c+1]) 
+                        c--;
+                }
             }
-            
         }
-
-        // Processing duplicates of Number 1
-        while (i + 1 < num.size() && num[i + 1] == num[i]) 
-            i++;
-
+            
+        return ans;
     }
-    
-    return res;
-    
-}
 };
