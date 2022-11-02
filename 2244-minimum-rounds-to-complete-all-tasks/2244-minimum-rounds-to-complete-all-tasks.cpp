@@ -9,7 +9,7 @@ public:
         for(auto i : mp){
             if(i.second==1)return -1;
             int x = i.second;
-            r+=((i.second)+2)/3;
+            r+=(x+2)/3;
         
         }
         return r;
