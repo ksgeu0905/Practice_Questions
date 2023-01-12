@@ -9,24 +9,21 @@ class Solution
     vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
     {
         priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
-        vector<int>dist(V,INT_MAX);
-        dist[S]=0;
+        vector<int>dis(V,1e9);
         pq.push({0,S});
+        dis[S]=0;
         while(!pq.empty()){
-            int node = pq.top().second;
-            int dis = pq.top().first;
-            
+            int d=pq.top().first;
+            int n=pq.top().second;
             pq.pop();
-            
-            for(auto it:adj[node]){
-                int new_dis = dis+it[1];
-                if(dist[it[0]] > new_dis){
-                    dist[it[0]]=new_dis;
-                    pq.push({new_dis,it[0]});
+            for(auto it:adj[n]){
+                if(dis[it[0]]>d+it[1]){
+                    dis[it[0]]=d+it[1];
+                    pq.push({d+it[1],it[0]});
                 }
             }
         }
-        return dist;
+        return dis;
     }
 };
 
