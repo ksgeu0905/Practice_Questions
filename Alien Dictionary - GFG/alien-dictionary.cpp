@@ -12,32 +12,30 @@ class Solution{
     string findOrder(string dict[], int N, int K) {
         vector<int>adj[K];
         vector<int>indeg(K,0);
-        string ans="";
-        for(int i=0;i<N-1;i++){
-            string s1=dict[i];
-            string s2=dict[i+1];
-            int j=0,k=0;
-            while(j<s1.length() && k<s2.length()){
-                if(s1[j]!=s2[k]){
-                    adj[s1[j]-'a'].push_back(s2[k]-'a');
-                    indeg[s2[k]-'a']++;
+        for(int p=1;p<N;p++){
+            string s1=dict[p-1];
+            string s2=dict[p];
+            int i=0,j=0;
+            while(i<s1.length() && j<s2.length()){
+                if(s1[i]!=s2[j]){
+                    adj[s1[i]-'a'].push_back(s2[j]-'a');
+                    indeg[s2[j]-'a']++;
                     break;
                 }
-                j++;
-                k++;
+                i++;j++;
             }
         }
+        
         queue<int>q;
         for(int i=0;i<K;i++){
             if(indeg[i]==0)q.push(i);
         }
-        
+        string ans="";
         while(!q.empty()){
-            int t=q.front();
+            int n=q.front();
             q.pop();
-            ans += (t+'a');
-            
-            for(auto it:adj[t]){
+            ans+=(n+'a');
+            for(auto it:adj[n]){
                 indeg[it]--;
                 if(indeg[it]==0){
                     q.push(it);
