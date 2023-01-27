@@ -16,18 +16,13 @@ class Solution {
 	            if(cost[i][j]==-1)cost[i][j]=1e9;
 	        }
 	    }
-	    
-	    
-	    for(int via=0;via<n;via++){
-	        for(int i=0;i<n;i++){
-	            for(int j=0;j<n;j++){
-	                cost[i][j]=min(cost[i][j],cost[i][via]+cost[via][j]);
-	            }
-	        }
+	    for(int k=0;k<n;k++){
+    	    for(int i=0;i<n;i++){
+    	        for(int j=0;j<n;j++){
+    	            cost[i][j]=min(cost[i][j],cost[i][k]+cost[k][j]);
+    	        }
+    	    }
 	    }
-	    
-	    
-	    
 	    for(int i=0;i<n;i++){
 	        for(int j=0;j<n;j++){
 	            if(cost[i][j]==1e9)cost[i][j]=-1;
