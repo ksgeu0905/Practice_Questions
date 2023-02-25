@@ -10,12 +10,22 @@ using namespace std;
 
 class Solution{
 public:
+    void insert_at_btm(stack<int>&st,int k){
+        if(st.size()==0){
+            st.push(k);
+            return;
+        }
+        int x = st.top();
+        st.pop();
+        insert_at_btm(st,k);
+        st.push(x);
+    }
     void Reverse(stack<int> &st){
-        stack<int>st2;
-        st2=st;
-        while(!st.empty())st.pop();
-        while(!st2.empty()){st.push(st2.top());st2.pop();}
-        
+        if(st.size()==1)return;
+        int temp=st.top();
+        st.pop();
+        Reverse(st);
+        insert_at_btm(st,temp);
     }
 };
 
