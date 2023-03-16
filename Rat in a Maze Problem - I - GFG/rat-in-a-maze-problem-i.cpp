@@ -10,23 +10,26 @@ using namespace std;
 
 class Solution{
     public:
-    void find(int i,int j,vector<vector<int>>&m,int n,string s,vector<string>&ans){
-        if(i<0 || j<0 ||i>=n || j>=n || m[i][j]==0)return;
+    void find(vector<vector<int>>&m,int &n,vector<string>&res,string temp,int i,int j){
+        if(i<0 || j<0 || i>=n || j>=n || m[i][j]==0)return;
         if(i==n-1 && j==n-1){
-            ans.push_back(s);
+            res.push_back(temp);
             return;
         }
+        
         m[i][j]=0;
-        find(i+1,j,m,n,s+"D",ans);
-        find(i,j+1,m,n,s+"R",ans);
-        find(i,j-1,m,n,s+"L",ans);
-        find(i-1,j,m,n,s+"U",ans);
+        find(m,n,res,temp+'D',i+1,j);
+        find(m,n,res,temp+'R',i,j+1);
+        find(m,n,res,temp+'L',i,j-1);
+        find(m,n,res,temp+'U',i-1,j);
         m[i][j]=1;
+        
     }
     vector<string> findPath(vector<vector<int>> &m, int n) {
-        vector<string>ans;
-        find(0,0,m,n,"",ans);
-        return ans;
+        vector<string>res;
+        find(m,n,res,"",0,0);
+        if(res.size()==0)res.push_back({"-1"});
+        return res;
     }
 };
 
